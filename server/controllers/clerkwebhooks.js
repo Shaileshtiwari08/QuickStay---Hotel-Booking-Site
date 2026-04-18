@@ -1,4 +1,3 @@
-import { json } from "express";
 import User from "../models/User.js";
 import { Webhook } from "svix";
 
@@ -11,13 +10,13 @@ const clerkWebhooks = async (req, res) => {
         const headers = {
             "svix-id": req.headers["svix-id"],
             "svix-timestamp": req.headers["svix-timestamp"],
-            "svix-signature": req.headers["svix-signature"]
+            "svix-signature": req.headers["svix-signature"],
         }
         // Verifying Headers
-        await webhook.verify(json.stringify(req.body), headers);
+        await webhook.verify(JSON.stringify(req.body), headers);
 
         // Extracting data from the request body
-        const { data, type } = req.body;
+        const { data, type } = req.body
 
         const userData = {
             _id: data.id,

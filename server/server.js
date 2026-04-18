@@ -5,6 +5,7 @@ import connectDB from "./configs/db.js";
 import { clerkMiddleware } from '@clerk/express';
 import clerkWebhooks from "./controllers/clerkwebhooks.js";
 
+
 connectDB(); // Connect to MongoDB
 
 const app = express();
@@ -18,7 +19,7 @@ app.use(clerkMiddleware());
 app.use("/api/clerk", clerkWebhooks);
 
 
-app.get("/", (req, res) => res.send("API is working properly!"));
+app.get('/', (req, res) => res.send("API is working"));
 
 const PORT = process.env.PORT || 3000;
 
